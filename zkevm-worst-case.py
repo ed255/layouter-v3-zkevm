@@ -347,6 +347,17 @@ def get_advice(regions):
     return advice
 
 
+def cell_usage(k, regions):
+    width = get_advice(regions)
+    height = 2**k
+    area = width * height
+    used_cells = 0
+    for region in regions:
+        used_cells += region.width * region.height
+
+    return area, used_cells
+
+
 def to_gb(x):
     return x//1024//1024//1024
 
@@ -373,6 +384,8 @@ def main():
     print(f"advice = {advice_v1}, fixed = {fixed_v1}")
     mem_v1 = estimate_mem(degree, k, fixed_v1, advice_v1)
     print(f"Mem estimation: {to_gb(mem_v1)} GiB")
+    area_v1, used_cells_v1 = cell_usage(k, regions_v1)
+    print(f"Area usage: {used_cells_v1/area_v1 * 100}%")
 
     print("")
     regions_v3 = solve_v3(k, deepcopy(regions))
@@ -384,6 +397,9 @@ def main():
     print(f"advice = {advice_v3}, fixed = {fixed_v3}")
     mem_v3 = estimate_mem(degree, k, fixed_v3, advice_v3)
     print(f"Mem estimation: {to_gb(mem_v3)} GiB")
+    area_v3, used_cells_v3 = cell_usage(k, regions_v3)
+    print(f"Area usage: {used_cells_v3/area_v3 * 100}%")
+
     draw2(regions_v1, regions_v3, 2**k, advice_v1)
 
 
