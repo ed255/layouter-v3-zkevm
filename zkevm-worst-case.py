@@ -53,8 +53,8 @@ rows_per_gas = {
     "copy": 21.3,  # Via CODECOPY of contract with MAX_CODESIZE
     "exp": 1.09,  # 7 rows per exponent bit
     "keccak": 90.5,  # Via EXTCODESIZE of contract with MAX_CODESIZE
-    # via hot SLOAD (100 gas), assuming 11 levels for state and 8 for storage
-    "mpt": 0.19,
+    # via hot SLOAD (100 gas), assuming 11 levels for state and 8 for storage,
+    "mpt": 0.95,
     "rw": 11.33,  # Via MLOAD (RETURNDATASIZE + repeating MLOAD)
     "tx": 8.73,  # From SignVerifyChip
     "ecc": None,  # TODO
